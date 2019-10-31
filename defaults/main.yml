@@ -5,6 +5,7 @@ certbot_auto_renew_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 certbot_auto_renew_hour: "3"
 certbot_auto_renew_minute: "30"
 certbot_auto_renew_options: "--quiet --no-self-upgrade"
+
 certbot_testmode: false
 certbot_hsts: false
 
@@ -15,14 +16,18 @@ certbot_create_method: standalone
 certbot_admin_email: email@example.com
 certbot_certs: []
 # - email: janedoe@example.com
+#   webroot: "/var/www/html/"
 #   domains:
 #     - example1.com
 #     - example2.com
 # - domains:
 #     - example3.com
+
 certbot_create_command: >-
   {{ certbot_script }} certonly --standalone --noninteractive --agree-tos
-  --{{ certbot_create_method  }} {{ certbot_webroot_arg if certbot_create_method == 'webroot'  else '' }}  {{ '--hsts' if certbot_hsts else '' }}
+  --{{ certbot_create_method  }} {{ `-w ` if certbot_create_method == 'webroot'  else '' }}
+  {{ cert_item.webroot if certbot_create_method == 'webroot'  else '' }}
+  {{ '--hsts' if certbot_hsts else '' }}
   {{ '--test-cert' if certbot_testmode else '' }}
   --email {{ cert_item.email | default(certbot_admin_email) }}
   -d {{ cert_item.domains | join(',') }}
@@ -48,8 +53,4 @@ certbot_keep_updated: true
 
 # Where to put Certbot when installing from source.
 certbot_dir: /opt/certbot
-
-# Where the web root is
-certbot_webroot: "/var/www/html"
-certbot_webroot_arg: "-w {{ certbot_webroot }}"
 
