@@ -24,11 +24,12 @@ certbot_certs: []
 #     - example3.com
 
 certbot_create_command: >-
-  {{ certbot_script }} certonly --standalone --noninteractive --agree-tos
-  --{{ certbot_create_method  }} {{ `-w ` if certbot_create_method == 'webroot'  else '' }}
+  {{ certbot_script }} certonly --{{ certbot_create_method  }}
+  {{ `-w ` if certbot_create_method == 'webroot'  else '' }}
   {{ cert_item.webroot if certbot_create_method == 'webroot'  else '' }}
   {{ '--hsts' if certbot_hsts else '' }}
   {{ '--test-cert' if certbot_testmode else '' }}
+  --noninteractive --agree-tos
   --email {{ cert_item.email | default(certbot_admin_email) }}
   -d {{ cert_item.domains | join(',') }}
   {{ '--pre-hook /etc/letsencrypt/renewal-hooks/pre/stop_services'
