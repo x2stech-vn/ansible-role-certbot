@@ -46,12 +46,12 @@ jobs:
             playbook: converge.yml
           - distro: centos7
             playbook: converge.yml
-          - distro: centos6
-            playbook: playbook-source-install.yml
           - distro: ubuntu1804
             playbook: converge.yml
           - distro: debian10
             playbook: converge.yml
+          - distro: centos7
+            playbook: playbook-source-install.yml
 
     steps:
       - name: Check out the codebase.
