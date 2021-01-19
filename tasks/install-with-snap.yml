@@ -1,0 +1,27 @@
+---
+- name: Ensure snapd is installed.
+  package:
+    name: snapd
+    state: present
+
+- name: Ensure snapd is enabled.
+  systemd:
+    name: snapd.socket
+    enabled: true
+
+- name: Enable classic snap support.
+  file:
+    source: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+
+- name: Install certbot via snap.
+  snap:
+    name: certbot
+    classic: true
+
+- name: Symlink certbot into place.
+  file:
+    source: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link

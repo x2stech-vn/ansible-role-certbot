@@ -52,6 +52,8 @@ jobs:
             playbook: converge.yml
           - distro: centos7
             playbook: playbook-source-install.yml
+          - distro: centos7
+            playbook: playbook-snap-install.yml
 
     steps:
       - name: Check out the codebase.
