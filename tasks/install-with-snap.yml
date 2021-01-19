@@ -3,6 +3,7 @@
   package:
     name: snapd
     state: present
+  register: snapd_install
 
 - name: Ensure snapd is enabled.
   systemd:
@@ -14,6 +15,12 @@
     src: /var/lib/snapd/snap
     dest: /snap
     state: link
+
+- name: Update snap after install.
+  shell: sudo snap install core; sudo snap refresh core
+  changed_when: true
+  failed_when: false
+  when: snapd_install is changed
 
 - name: Install certbot via snap.
   snap:
