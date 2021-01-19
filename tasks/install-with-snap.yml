@@ -17,7 +17,7 @@
     state: link
 
 - name: Update snap after install.
-  shell: sudo snap install core; sudo snap refresh core
+  shell: snap install core; snap refresh core
   changed_when: true
   failed_when: false
   when: snapd_install is changed
