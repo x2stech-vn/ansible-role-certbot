@@ -12,8 +12,9 @@ Generally, installing from source (see section `Source Installation from Git`) l
 
 ## Role Variables
 
-TODO.
+    certbot_install_method: package
 
+Controls how Certbot is installed. Available options are 'package', 'snap', and 'source'.
 
     certbot_auto_renew: true
     certbot_auto_renew_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"

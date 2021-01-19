@@ -11,7 +11,7 @@
 
 - name: Enable classic snap support.
   file:
-    source: /var/lib/snapd/snap
+    src: /var/lib/snapd/snap
     dest: /snap
     state: link
 
@@ -22,6 +22,6 @@
 
 - name: Symlink certbot into place.
   file:
-    source: /snap/bin/certbot
+    src: /snap/bin/certbot
     dest: /usr/bin/certbot
     state: link
