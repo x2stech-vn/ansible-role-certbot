@@ -43,23 +43,23 @@ jobs:
         include:
           - distro: centos8
             playbook: converge.yml
-            experimental: 'false'
+            experimental: false
           - distro: centos7
             playbook: converge.yml
-            experimental: 'false'
+            experimental: false
           - distro: ubuntu1804
             playbook: converge.yml
-            experimental: 'false'
+            experimental: false
           - distro: debian10
             playbook: converge.yml
-            experimental: 'false'
+            experimental: false
           - distro: centos7
             playbook: playbook-source-install.yml
-            experimental: 'false'
+            experimental: false
 
           - distro: centos7
             playbook: playbook-snap-install.yml
-            experimental: 'true'
+            experimental: true
 
     steps:
       - name: Check out the codebase.
