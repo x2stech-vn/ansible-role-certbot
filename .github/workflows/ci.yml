@@ -29,12 +29,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
+        run: pip3 install yamllint
 
       - name: Lint code.
         run: |
           yamllint .
-          ansible-lint
 
   molecule:
     name: Molecule
@@ -44,14 +43,23 @@ jobs:
         include:
           - distro: centos8
             playbook: converge.yml
+            experimental: false
           - distro: centos7
             playbook: converge.yml
+            experimental: false
           - distro: ubuntu1804
             playbook: converge.yml
+            experimental: false
           - distro: debian10
             playbook: converge.yml
+            experimental: false
           - distro: centos7
             playbook: playbook-source-install.yml
+            experimental: false
+
+          - distro: centos7
+            playbook: playbook-snap-install.yml
+            experimental: true
 
     steps:
       - name: Check out the codebase.
@@ -69,6 +77,7 @@ jobs:
 
       - name: Run Molecule tests.
         run: molecule test
+        continue-on-error: ${{ matrix.experimental }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
