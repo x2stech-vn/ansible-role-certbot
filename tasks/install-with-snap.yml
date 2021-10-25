@@ -9,6 +9,7 @@
   systemd:
     name: snapd.socket
     enabled: true
+    state: started
 
 - name: Enable classic snap support.
   file:
