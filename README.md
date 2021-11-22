@@ -52,8 +52,8 @@ The email address used to agree to Let's Encrypt's TOS and subscribe to cert-rel
 
     certbot_certs: []
       # - email: janedoe@example.com
-	  # -  webroot: "/var/www/html"
-      # - domains:
+      #   webroot: "/var/www/html"
+      #   domains:
       #     - example1.com
       #     - example2.com
       # - domains:
@@ -84,10 +84,6 @@ This install method is currently experimental and may or may not work across all
 
 #### Webroot Certificate Generation
 
-	certbot_deployhook: "service {{certbot_create_standalone_stop_services }} restart"
-	
-Script content for the deploy hook called by certbot after successfully obtaining the certificate
-	
 When using the `webroot` creation method, a `webroot` item has to be provided for every `certbot_certs` item, specifying which directory to use for the authentication. Also, make sure your webserver correctly delivers contents from this directory.
 
 ### Source Installation from Git
