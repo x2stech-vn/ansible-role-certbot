@@ -34,15 +34,15 @@ Currently the `standalone` and `webroot` method are supported for generating new
 
 Set `certbot_create_if_missing` to `yes` or `True` to let this role generate certs. 
 
-	certbot_create_method: standalone
+    certbot_create_method: standalone
 
 Set the method used for generating certs with the `certbot_create_method` variable — current allowed values are: `standalone` or `webroot`.
 
-	certbot_testmode: false
+    certbot_testmode: false
 
 Enable test mode to only run a test request without actually creating certificates.
 
-	certbot_hsts: false
+    certbot_hsts: false
 
 Enable (HTTP Strict Transport Security) for the certificate generation.
 
