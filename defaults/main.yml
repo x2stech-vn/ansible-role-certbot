@@ -37,10 +37,10 @@ certbot_create_command: >-
   {{ cert_item.webroot | default(certbot_webroot) if certbot_create_method == 'webroot' else '' }}
   -d {{ cert_item.domains | join(',') }}
   {{ '--pre-hook /etc/letsencrypt/renewal-hooks/pre/stop_services'
-    if certbot_create_standalone_stop_services
+    if certbot_create_standalone_stop_services and certbot_create_method == 'standalone'
   else '' }}
   {{ '--post-hook /etc/letsencrypt/renewal-hooks/post/start_services'
-    if certbot_create_standalone_stop_services
+    if certbot_create_standalone_stop_services and certbot_create_method == 'standalone'
   else '' }}
 
 certbot_create_standalone_stop_services:
