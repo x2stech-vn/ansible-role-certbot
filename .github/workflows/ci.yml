@@ -41,10 +41,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro: centos8
-            playbook: converge.yml
-            experimental: false
-          - distro: centos7
+          - distro: rockylinux9
             playbook: converge.yml
             experimental: false
           - distro: ubuntu2004
@@ -53,12 +50,8 @@ jobs:
           - distro: debian10
             playbook: converge.yml
             experimental: false
-          # Source install started failing recently.
-          # - distro: centos7
-          #   playbook: playbook-source-install.yml
-          #   experimental: false
 
-          - distro: centos7
+          - distro: rockylinux9
             playbook: playbook-snap-install.yml
             experimental: true
 
