@@ -47,7 +47,7 @@ certbot_create_command: >-
   else '' }}
 
 certbot_create_standalone_stop_services:
-  - nginx
+  # - nginx
   # - apache
   # - varnish
 
