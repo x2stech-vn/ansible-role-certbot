@@ -2,6 +2,9 @@
 - name: Install Certbot.
   package: "name={{ certbot_package }} state=present"
 
+- name: Install Certbot Nginx plugin.
+  package: "name=python3-certbot-nginx state=present"
+
 - name: Set Certbot script variable.
   set_fact:
     certbot_script: "{{ certbot_package }}"
